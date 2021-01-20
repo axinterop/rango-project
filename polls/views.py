@@ -6,9 +6,9 @@ from django.http import HttpResponse
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
     # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': "Crunchy, creamy, cookie, candy, cupcake!",
-                    'link_to_just': "/polls/just",
-                    }
+    context_dict = {
+        'boldmessage': "Crunchy, creamy, cookie, candy, cupcake!",
+    }
 
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
@@ -17,7 +17,10 @@ def index(request):
 
 
 def about(request):
-    return HttpResponse("Rango says hey there partner! <br> <a href='/polls/'>Home</a>")
+    context_dict = {
+        'boldmessage': "Ignorance!",
+    }
+    return render(request, 'polls/about.html', context=context_dict)
 
 
 def just(request):
