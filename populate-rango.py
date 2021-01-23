@@ -20,14 +20,17 @@ def populate():
         {
             "title": "Official Python Tutorial",
             "url": "https://docs.python.org/3/tutorial/",
+            'views': 4,
         },
         {
             "title": "How to Think like a Computer Scientists",
             "url": "http://www.greenteapress.com/thinkpython/",
+            'views': 7,
         },
         {
             "title": "Learn Python in 10 Minutes",
             "url": "http://www.korokithakis.net/tutorials/python/",
+            'views': 18,
         }
     ]
 
@@ -35,14 +38,17 @@ def populate():
         {
             "title": "Official Python Tutorial",
             "url": "https://docs.djangoproject.com/en/3.1/intro/tutorial01/",
+            'views': 9,
         },
         {
             "title": "Django Rocks",
             "url": "http://www.djangorocks.com/",
+            'views': 4,
         },
         {
             "title": "How to Tango with Django",
             "url": "http://www.tangowithdjango.com/",
+            'views': 1
         }
     ]
 
@@ -50,10 +56,12 @@ def populate():
         {
             "title": "Bottle",
             "url": "http://bottlepy.org/docs/dev/",
+            'views': 2,
         },
         {
             "title": "Flask",
             "url": "http://flask.pocoo.org",
+            'views': 6,
         }
     ]
 
@@ -73,11 +81,6 @@ def populate():
             "views": 32,
             "likes": 16,
         },
-        "Python User Groups": {
-            "pages": [{"title": "Flask", "url": "http://flask.pocoo.org",}],
-            "views": 32,
-            "likes": 16,
-        }
     }
 
     # If you want to add more categories or pages,
@@ -89,7 +92,7 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data["views"], cat_data["likes"])
         for p in cat_data["pages"]:
-            add_page(c, p["title"], p["url"])
+            add_page(c, p["title"], p["url"], p["views"])
 
     # Print out the categories we have added.
     for c in Category.objects.all():
