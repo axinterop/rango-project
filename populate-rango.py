@@ -72,6 +72,11 @@ def populate():
             "pages": other_pages,
             "views": 32,
             "likes": 16,
+        },
+        "Python User Groups": {
+            "pages": [{"title": "Flask", "url": "http://flask.pocoo.org",}],
+            "views": 32,
+            "likes": 16,
         }
     }
 

@@ -8,13 +8,8 @@ class PageInLine(admin.StackedInline):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None, {'fields': ['name']}),
-        ('Stats:', {'fields': ['views', 'likes']}),
-    ]
-    inlines = [PageInLine]
-
     list_display = ('name', "views", "likes")
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class PageAdmin(admin.ModelAdmin):
