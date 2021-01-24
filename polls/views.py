@@ -3,9 +3,11 @@ from django.shortcuts import render
 from polls.models import Category, Page
 from polls.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -42,6 +44,7 @@ def show_category(request, category_name_slug):
     return render(request, 'polls/category.html', context_dict)
 
 
+@login_required
 def add_category(request):
     form = CategoryForm()
 
@@ -56,6 +59,7 @@ def add_category(request):
     return render(request, 'polls/add_category.html', {'form': form})
 
 
+@login_required
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
@@ -82,6 +86,9 @@ def add_page(request, category_name_slug):
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('index'))
+
     registered = False
 
     if request.method == 'POST':
@@ -117,6 +124,9 @@ def register(request):
 
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('index'))
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -134,3 +144,8 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
     else:
         return render(request, 'polls/login.html')
+
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))

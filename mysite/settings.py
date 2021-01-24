@@ -26,6 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/polls/login/'
+
 # Application definition
 
 INSTALLED_APPS = [
