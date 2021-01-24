@@ -18,10 +18,9 @@ def index(request):
 
 
 def about(request):
-    context_dict = {
-        'boldmessage': "Ignorance!",
-    }
-    return render(request, 'polls/about.html', context=context_dict)
+    print(request.method)
+    print(request.user)
+    return render(request, 'polls/about.html', context={})
 
 
 def show_category(request, category_name_slug):

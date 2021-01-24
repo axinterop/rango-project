@@ -1,4 +1,7 @@
 <!doctype html>
+
+{% load polls_template_tags %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +17,11 @@
 <body>
     <div>
         {% block body_block %}
+        {% endblock %}
+    </div>
+    <div>
+        {% block sidebar_block %}
+            {% get_category_list category %}
         {% endblock %}
     </div>
     <hr>
