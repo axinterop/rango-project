@@ -1,24 +1,23 @@
-<!doctype html>
-
+{% extends 'polls/base.html' %}
 {% load static %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Rango</title>
-</head>
-<body>
+{% block title_block %}
+    Home Page
+{% endblock %}
+
+{% block body_block %}
     <h1>Rango says...</h1>
-    <div>hey there partner</div>
+    hey there partner!
     <div>
         <h2>Most Liked Categories</h2>
         {% if categories %}
             <ul>
             {% for category in categories %}
-                <li><a href="/polls/category/{{ category.slug }}">{{ category.name }}</a></li>
+                <li>
+                    <a href="{% url 'show_category' category.slug %}">
+                        {{ category.name }}
+                    </a>
+                </li>
             {% endfor %}
             </ul>
                 {% else %}
@@ -30,7 +29,11 @@
         {% if pages %}
             <ul>
                 {% for page in pages %}
-                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                    <li>
+                        <a href="{{ page.url }}">
+                            {{ page.title }}
+                        </a>
+                    </li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -38,10 +41,7 @@
         {% endif %}
     </div>
     <div>
-        <a href="/polls/about/">About Rango</a>
-        <a href="/polls/add_category/">Add Category</a>
-        <br>
         <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" width="480"/>
     </div>
-</body>
-</html>
+{% endblock %}
+
