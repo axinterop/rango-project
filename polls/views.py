@@ -29,7 +29,11 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'polls/about.html')
+    visitor_cookie_handler(request)
+    context_dict = {
+        'visits': request.session['visits']
+    }
+    return render(request, 'polls/about.html', context_dict)
 
 
 def show_category(request, category_name_slug):
