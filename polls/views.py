@@ -1,11 +1,7 @@
 from django.shortcuts import render
 
 from polls.models import Category, Page
-from polls.forms import CategoryForm, PageForm, UserForm, UserProfileForm
-
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
+from polls.forms import CategoryForm, PageForm
 
 from django.contrib.auth.decorators import login_required
 
