@@ -1,14 +1,11 @@
 {% extends "polls/base.html" %}
 {% block body_block %}
-    <h1>Login</h1>
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Log in" />
-        <input type="hidden" name="next" value="{{ next }}" />
-    </form>
-    <p>
-        Not a member?
-        <a href="{% url 'registration_register' %}">Register</a>
-    </p>
+    <main class="form-signin" style="max-width: 330px">
+        <h1 class="display-3">Login</h1>
+        <form class="form-signin" method="post" action="." role="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Sing in">
+        </form>
+    </main>
 {% endblock %}
