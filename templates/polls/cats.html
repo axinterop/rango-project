@@ -1,19 +1,13 @@
-<ul>
 {% if cats %}
     {% for c in cats %}
         {% if c == act_cat %}
-            <li>
-            <strong>
-                <a href="{% url 'show_category' c.slug %}">{{ c.name }}</a>
-            </strong>
-            </li>
+        <a href="{% url 'show_category' c.slug %}"
+           class="list-group-item list-group-item-action list-group-item-dark">{{ c.name }}</a>
         {% else %}
-            <li>
-                <a href="{% url 'show_category' c.slug %}">{{ c.name }}</a>
-            </li>
+        <a href="{% url 'show_category' c.slug %}"
+           class="list-group-item list-group-item-action bg-dark text-light">{{ c.name }}</a>
         {% endif %}
     {% endfor %}
 {% else %}
-    <li><strong>There are no categories present.</strong></li>
+    <strong>There are no categories present.</strong>
 {% endif %}
-</ul>
