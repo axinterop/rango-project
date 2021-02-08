@@ -1,26 +1,28 @@
 {% extends 'polls/base.html' %}
 {% load static %}
+{% load filters %}
 
 {% block title_block %}
     Add a Category
 {% endblock %}
 
 {% block body_block %}
-    <div>
-        <form id="page_form" role="form" method="post" action="{% url 'add_category' %}">
-        <h2 class="form-signin-heading">Add a Category</h2>
+    <div style="max-width: 500px">
+    <h1 class="display-4 mb-3">Add a Category</h1>
+        <form id="page_form" class="form-signin mb-3" role="form" method="post" action="{% url 'add_category' %}">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
             {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}<br>
-                {{ field }}<br>
+                <div class="mb-3">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    {{ field|addclass:'form-control' }}
+                    <small class="form-text mb-3" style="color: grey">{{ field.help_text }}</small>
+                </div>
             {% endfor %}
-            <br>
-            <input class="btn btn-primary" type="submit" name="submit" value="Create Category">
+            <input class="w-100 btn btn-primary" type="submit" name="submit" value="Create Category">
         </form>
     </div>
 {% endblock %}
-

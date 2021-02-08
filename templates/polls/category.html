@@ -6,10 +6,16 @@
 {% endblock %}
 
 {% block body_block %}
+    <div>
     {% if category %}
-        <h1 class="display-4">{{ category.name }}</h1>
-
+        <div class="mb-4">
+        <h1 class="display-4 d-inline">{{ category.name }}</h1>
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_page' category.slug %}" class="btn btn-primary d-inline ml-4">Add Page</a>
+        {% endif %}
+        </div>
         {% if pages %}
+        <div>
             <ul class="list-group">
                 {% for page in pages %}
                     <li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
@@ -18,11 +24,9 @@
         {% else %}
             <p><strong>No pages currently in category.</strong></p>
         {% endif %}
-        {% if user.is_authenticated %}
-            <br>
-            <a href="{% url 'add_page' category.slug %}" class="btn btn-primary">Add Page</a>
-        {% endif %}
+        </div>
     {% else %}
         <p>The specified category does not exist!</p>
     {% endif %}
+    </div>
 {% endblock %}
