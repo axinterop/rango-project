@@ -56,14 +56,14 @@
               <a class="nav-link" href="{% url 'add_category' %}">Add a New Category</a>
             </li>
             <li class="nav-item text-nowrap">
-              <a class="nav-link" href="{% url 'auth_logout' %}?next=/polls/">Logout</a>
+              <a class="nav-link" href="{% url 'logout' %}?next=/polls/">Logout</a>
             </li>
               {% else %}
             <li class="nav-item text-nowrap">
-              <a class="nav-link" href="{% url 'registration_register' %}">Register Here</a>
+              <a class="nav-link" href="{% url 'django_registration_register' %}">Register Here</a>
             </li>
             <li class="nav-item text-nowrap">
-              <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
             </li>
               {% endif %}
             </ul>

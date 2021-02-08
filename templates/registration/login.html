@@ -1,11 +1,11 @@
 {% extends "polls/base.html" %}
 {% block body_block %}
     <main class="form-signin" style="max-width: 330px">
-        <h1 class="display-3">Login</h1>
-        <form class="form-signin" method="post" action="." role="form">
+        <h1 class="display-4 mb-3">Login</h1>
+        <form class="form-signin mb-3" method="post" action="" role="form">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Sing in">
+            <input class="btn btn-primary" type="submit" value="Sing in">
         </form>
     </main>
 {% endblock %}
