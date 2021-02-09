@@ -20,13 +20,30 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django_registration.backends.one_step.views import RegistrationView
+from django.contrib.auth.views import LoginView
+
+from django.shortcuts import redirect
+
+
+# @login_required for class based views
+def anonymous_required(func):
+    def as_view(request, *args, **kwargs):
+        redirect_to = kwargs.get('next', settings.LOGIN_REDIRECT_URL)
+        if request.user.is_authenticated:
+            return redirect(redirect_to)
+        response = func(request, *args, **kwargs)
+        return response
+    return as_view
 
 
 urlpatterns = [
                   path('polls/', include('polls.urls')),
                   path('admin/', admin.site.urls),
+                  path('accounts/login/',
+                       LoginView.as_view(redirect_authenticated_user=True),
+                       name='login'),
                   path('accounts/register/',
-                       RegistrationView.as_view(success_url='/polls/'),
+                       anonymous_required(RegistrationView.as_view(success_url='/polls/')),
                        name='django_registration_register'),
                   path('accounts/', include('django_registration.backends.one_step.urls')),
                   path('accounts/', include('django.contrib.auth.urls')),
